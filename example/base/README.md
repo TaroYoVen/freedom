@@ -86,6 +86,8 @@ type Runtime interface {
     Logger() Logger
     //获取一级缓存实例，请求结束，该缓存生命周期结束。
     Store() *memstore.Store
+    //获取总线, 所有微服务总线数据一样,默认透传了trace。
+    Bus() *Bus
 
 // Initiator 实例初始化接口，在Prepare使用。
 type Initiator interface {
@@ -112,7 +114,7 @@ type Initiator interface {
     Iris() *iris.Application
 }
 
-// Starter .
+// Starter 启动回调接口.
 type Starter interface {
     Iris() *iris.Application
     //异步缓存预热
